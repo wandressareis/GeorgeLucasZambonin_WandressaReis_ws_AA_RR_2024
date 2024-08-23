@@ -1,6 +1,6 @@
 # %%
 from os import walk
-import os
+import os, re
 import os.path
 import shlex
 import subprocess
@@ -8,6 +8,10 @@ import logging
 import json
 import pandas as pd
 import matplotlib.pyplot as plt
+import platform
+
+ASSETS_PATH = "assets/"
+GRAPHS_PATH = os.path.join(ASSETS_PATH, "graphs/")
 
 logging.basicConfig(level=logging.DEBUG, filename='run_exp_data.log', filemode='w', format='%(process)d - [%(asctime)s] : %(levelname)s -> %(message)s')
 
@@ -21,7 +25,7 @@ Usage mode:
 BINARY_PROGRAM_LIST = ["verifica_algo"]
 # INPUTS_FILE = "inputs"
 TIMES_RUN = 13
-INPUT_LIST = [str(i) for i in range(20)]
+INPUT_LIST = [str(i) for i in range(100)]
 
 # def list_files_input():    
 #     for (dirpath, dirnames, filenames) in walk(INPUTS_FILE):
@@ -30,7 +34,7 @@ INPUT_LIST = [str(i) for i in range(20)]
 #             INPUT_LIST.append(full_path)   
 
 # %%
-def run_code():
+def run_code() -> dict:
 
     dict_executions = {
         "n": [],
@@ -58,22 +62,43 @@ def run_code():
                     dict_executions["n"].append(output["n"])
                     dict_executions["total_comparisons"].append(output["total_comparisons"])
                     dict_executions["execution_time(ns)"].append(output["execution_time(ns)"])
-        return dict_executions
+    return dict_executions
     
-def plot_graph(df: pd.DataFrame):
-    df.groupby("n").mean().reset_index().plot(x="n", y="execution_time(ns)")
-    plt.show()
+def plot_graph(df: pd.DataFrame) -> None:
+
+    if not os.path.isdir(ASSETS_PATH):
+        os.mkdir(ASSETS_PATH)
+    
+    if not os.path.isdir(GRAPHS_PATH):
+        os.mkdir(GRAPHS_PATH)
+
+    df.groupby("n").mean().reset_index().plot(x="n", y="time_execution(seconds)")
+    plt.title = "Time execution mean by n"
+    plt.ylabel = "seconds"
+    plt.savefig(os.path.join(GRAPHS_PATH, "time_execution_mean.png"))
+
+    
+    df.groupby("n").mean().reset_index().plot(x="n", y="total_comparisons")
+    plt.savefig(os.path.join(GRAPHS_PATH, "total_comparisons.png"))
+
+def log_specs():
+    command = "cat /proc/cpuinfo"
+    all_info = subprocess.check_output(command, shell=True).decode().strip()
+    for line in all_info.split("\n"):
+        if "model name" in line:
+            logging.debug(re.sub( ".*model name.*:", "", line,1))
+            break
 
 def main():
 
     # %%
-    logging.debug('Experiment script executed')
-    logging.debug('Listing input files to the program')
-    # list_files_input()
+    logging.debug(f'Experiment script executed on a {platform.processor()}')
+    log_specs()
     dict_executions = run_code()
 
     # %%
     df_executions = pd.DataFrame.from_dict(dict_executions)
+    df_executions['time_execution(seconds)'] = df_executions['execution_time(ns)'] * 1e-9
     df_executions.to_csv('executions.csv', index=False)
 
     # %%
