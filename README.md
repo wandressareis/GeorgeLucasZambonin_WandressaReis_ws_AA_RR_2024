@@ -15,7 +15,7 @@
 
 #### Run on terminal:
 ```bash
-git clone https://github.com/wandressareis/GeorgeLucasZambonin_WandressaReis_ws_AA_RR_2024```
+git clone https://github.com/wandressareis/GeorgeLucasZambonin_WandressaReis_ws_AA_RR_2024
 cd GeorgeLucasZambonin_WandressaReis_ws_AA_RR_2024
 python3 -m venv .venv
 source .venv/bin/activate
