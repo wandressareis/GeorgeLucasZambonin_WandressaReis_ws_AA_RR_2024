@@ -12,16 +12,30 @@ int verifica_algo(int n){
     int i, j, k, l;
     
     int comparisons_count = 0;
+    int i_c[n], j_c[n], k_c[n];
 
-    for (l=0; l<10000; l++) {
-        for(i=0; i < n-5; i++) {
-            for (j=i+2; j<n/2; j++) {
-                for (k=0; k < n; k++) {
+    for(int i = 0; i < n; i++){
+        i_c[i] = 0;
+        j_c[i] = 0;
+        k_c[i] = 0;
+    }
+
+    for (l=1; l<=10000; l++) {
+        for(i=1; i <= n-5; i++) {
+            for (j=i+2; j<=n/2; j++) {
+                for (k=1; k <= n; k++) {
                     comparisons_count++;
-                    // inspeciona elemento
+                    i_c[i-1] += 1;
+                    j_c[i-1] += 1;
+                    k_c[i-1] += 1;
+                    // printf("%d %d %d %d\n", i, j, k, l);
                 }
             }
         }
+    }
+
+    for(int i = 0; i < n; i++){
+        printf("%d(i) : %d %d %d\n", i, i_c[i], j_c[i], k_c[i]);
     }
     return comparisons_count;
 }
