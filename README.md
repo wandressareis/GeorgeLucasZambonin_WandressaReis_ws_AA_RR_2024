@@ -17,7 +17,7 @@
 $$
 T(n)=
 \begin{cases}
-1000  n  \dfrac{(\lfloor\dfrac{n}{2}\rfloor-2)\times(\lfloor\dfrac{n}{2}\rfloor-1)}{2} & \quad \text{se $n > 0$}\\ 
+10000 \times n \times \dfrac{(\lfloor\dfrac{n}{2}\rfloor-2)\times(\lfloor\dfrac{n}{2}\rfloor-1)}{2} & \quad \text{se $n > 0$}\\ 
 0 & \quad \text{se n = 0}
 \end{cases}
 $$
