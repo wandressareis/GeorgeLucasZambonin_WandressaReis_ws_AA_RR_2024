@@ -1,27 +1,34 @@
-# GeorgeLucasZambonin_WandressaReis_ws_AA_RR_2024
-
-
-## Analise
+## Análise do Algoritmo "VerificaAlgo"
 
 ### Função de custo T(n)
 
 #### Resolução:
 
-##### Disponivel no slide
-![alt text](readme_assets/resolucao_slide.png)
+#### Disponível no slide
+
+<img src="readme_assets/resolucao_slide.png" width="350" height="400" alt="Descrição da imagem">
 
 ##### Resolução com passo a passo do slide
-![alt text](readme_assets/passo_a_passo_com_slide.png)
+<img src="readme_assets/passo-a-passo_com_slide.jpg" width="300" height="400" alt="Descrição da imagem">
 
-##### Função de custo correta
-$$
-T(n)=
-\begin{cases}
-10000 \times n \times \dfrac{(\lfloor\dfrac{n}{2}\rfloor-2)\times(\lfloor\dfrac{n}{2}\rfloor-1)}{2} & \quad \text{se $n > 0$}\\ 
-0 & \quad \text{se n = 0}
-\end{cases}
-$$
+<img src="readme_assets/continuacao.jpg" width="300" height="70" alt="Descrição da imagem">
+
+#### Função de custo correta
+![alt text](./readme_assets/funcao_de_custo.png)
+
 #### Comparação T(n)
+#### T(n) slide:
+$$
+T(n) = 10000n^2 - 50000n
+$$
+
+#### T(n) atual:
+
+$$
+T(n) = \frac{n \cdot \left( \min\left(n - 5, \left\lfloor \frac{n}{2} \right\rfloor - 1\right)\right) \cdot \left( \min\left(n - 5, \left\lfloor \frac{n}{2} \right\rfloor - 2\right)\right)}{2}
+$$
+
+
 ![alt text](assets/graphs/func_custo_t.png)
 
 ### Complexidade
