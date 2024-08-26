@@ -1,10 +1,19 @@
 ## Análise do Algoritmo "VerificaAlgo"
 
+### Pseudocódigo
+``` c
+VerificaAlgo (n: int); 
+i, j, k, l: int; 
+para l := 1 TO 10.000 faça 
+    para i := 1 TO n-5 faça 
+        para j := i+2 TO n/2 faça 
+            para k := 1 TO n faça 
+                {Inspecione elemento}
+```
+
 ### Função de custo T(n)
 
-#### Resolução:
-
-#### Disponível no slide
+#### Resolução disponível no slide
 
 <img src="readme_assets/resolucao_slide.png" width="350" height="400" alt="Descrição da imagem">
 
@@ -14,7 +23,9 @@
 <img src="readme_assets/continuacao.jpg" width="300" height="70" alt="Descrição da imagem">
 
 #### Função de custo correta
-![alt text](./readme_assets/funcao_de_custo.png)
+$$
+T(n) = \frac{n \cdot \left( \min\left(n - 5, \left\lfloor \frac{n}{2} \right\rfloor - 1\right)\right) \cdot \left( \min\left(n - 5, \left\lfloor \frac{n}{2} \right\rfloor - 2\right)\right)}{2}
+$$
 
 #### Comparação T(n)
 #### T(n) slide:
@@ -28,16 +39,15 @@ $$
 T(n) = \frac{n \cdot \left( \min\left(n - 5, \left\lfloor \frac{n}{2} \right\rfloor - 1\right)\right) \cdot \left( \min\left(n - 5, \left\lfloor \frac{n}{2} \right\rfloor - 2\right)\right)}{2}
 $$
 
-
-![alt text](assets/graphs/func_custo_t.png)
+<img src="assets/graphs/func_custo_t.png" width="400" height="300" alt="Descrição da imagem">
 
 ### Complexidade
 
-![alt text](assets/graphs/complexity_time.png)
+<img src="assets/graphs/complexity_time.png" width="400" height="300" alt="Descrição da imagem">
 
 ### Projeção assintotica $O(n^3)$
 
-![alt text](assets/graphs/actual_t_projection.png)
+<img src="assets/graphs/actual_t_projection.png" width="400" height="300" alt="Descrição da imagem">
 
 ## Requirements
 
@@ -46,7 +56,7 @@ $$
 
 ## Usage
 
-### linux
+### Linux
 
 #### Run on terminal:
 ```bash
