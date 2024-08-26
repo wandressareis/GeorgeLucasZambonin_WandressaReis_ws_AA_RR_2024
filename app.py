@@ -34,12 +34,8 @@ def old_t(n):
     return 10_000*(n**2 - 5*n)
 
 def actual_t(n):
-    if n > 0:
-        k = math.floor(n / 2)
-        count = 10000 * n * (k - 2) * (k - 1) / 2
-    else:
-        count = 0
-    return count
+    k = math.floor(n/2)
+    return 10000*n*(min(n-5,k-1))*(min(n-5,k-2))/2
 
 logging.basicConfig(level=logging.DEBUG, filename='run_exp_data.log', filemode='w', format='%(process)d - [%(asctime)s] : %(levelname)s -> %(message)s')
 

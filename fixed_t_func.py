@@ -12,12 +12,8 @@ def f(n:int):
     return count
 
 def t(n:int):
-    if n > 0:
-        k = math.floor(n / 2)
-        count = 10000 * n * (k - 2) * (k - 1) / 2
-    else:
-        count = 0
-    return count
+    k = math.floor(n/2)
+    return 10000*n*(min(n-5,k-1))*(min(n-5,k-2))/2
 
 def plot_values(save_image_path:str, n_values:list=list(range(1, 30)), projection:float=1):
     n_values 
@@ -40,4 +36,4 @@ def plot_values(save_image_path:str, n_values:list=list(range(1, 30)), projectio
     plt.savefig(save_image_path)
     
 if __name__ == "__main__":
-    plot_values("assets/graphs/theorical_t_projection.png", projection=3, n_values=list(range(1,1000)))
+    plot_values("assets/graphs/theorical_t_projection.png", projection=1, n_values=list(range(1,100)))
